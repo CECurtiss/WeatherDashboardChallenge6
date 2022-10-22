@@ -8,7 +8,34 @@
     <link rel="stylesheet" href="assets\stlye.css">
     <title>Weather Dashboard</title>
 </head>
-<body>
+<body class="container-fluid">
+    <header class="text-center bg-info">
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <div class="row">
+        <div class="col-3 bg-secondary ">
+            <div class="form-group"
+                <label for="cityname">Find a City:</label>
+                <input type="text" class="form-control" id="cityname">
+                <button type="button" class="btn btn-primary btn-block" id="searchbtn">Search</button>
+            </div>
+        </div>
+
+        <div class="col-9 bg-primary">
+            <div>more text </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <div class="previousinput"></div>
+        </div>
+
+        <div class="col-9">
+            <div class="fiveday"></div>
+        </div>
+    </div>
     
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="assets\script.js"></script>
