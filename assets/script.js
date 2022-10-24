@@ -48,26 +48,42 @@ function getForecast (lat, lon) {
         weatherDays.push(data.list[23])
         weatherDays.push(data.list[31])
         weatherDays.push(data.list[39])
-        // for (var i=7; i <=38; i+=7){
-        //     weatherDays.push(data.list[i])
-        // }
-        // weatherDays.push(data.list[-1]);
         console.log(weatherDays)
-});
 
+        weatherDays.forEach(weatherCards);
+         
+         function weatherCards () {
+            var dayCard = document.createElement('div')
+            dayCard.addClass("col bg-primary text-white");
+
+            dayCard.append(fiveDayForecast);
+         }
+        }
+    );
+    
 }
 
 function getWeather (lat, lon) {
     var requestCurrentUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=1878dc2f6221aa2b08efb2c0a1e2da79"
     fetch(requestCurrentUrl)
-        .then(function (response) {
-            console.log(response)
-            return response.json();
-        })
-        .then(function(data) {
+    .then(function (response) {
+        console.log(response)
+        return response.json();
+    })
+    .then(function(data) {
         console.log(data);
-        })
-        currentTemp.textContent = data.main.temp;
+        currentTemp.textContent = data.main.temp + " F";
+        currentWind.textContent=  data.wind.speed + " mph";
+        currentHumidity.textContent =  data.main.humidity + "%";
+    })
 }
 
 searchBtn.addEventListener("click", submitUserEntry);
+
+
+
+
+// for (var i=7; i <=38; i+=7){
+//     weatherDays.push(data.list[i])
+// }
+// weatherDays.push(data.list[-1]);
