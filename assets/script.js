@@ -23,17 +23,19 @@ var submitUserEntry = function () {
         var lat = coords[0].lat;
         var lon = coords[0].lon;
         console.log(lat,lon)
+        getForecast(lat,lon);
         getWeather(lat,lon);
         }) 
         .catch(function() {
             alert("Unable to connect to Server");
         });
+        document.getElementById('currentcityanddate').innerHTML = userInput;
 }
 
 
-function getWeather (lat, lon) {
-    var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=1878dc2f6221aa2b08efb2c0a1e2da79"
-    fetch(requestUrl)
+function getForecast (lat, lon) {
+    var requestForecastUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=1878dc2f6221aa2b08efb2c0a1e2da79"
+    fetch(requestForecastUrl)
         .then(function (response) {
         console.log(response)
         return response.json();
@@ -52,9 +54,21 @@ function getWeather (lat, lon) {
         // }
         // weatherDays.push(data.list[-1]);
         console.log(weatherDays)
-        
 });
 
+}
+
+function getWeather (lat, lon) {
+    var requestCurrentUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=1878dc2f6221aa2b08efb2c0a1e2da79"
+    fetch(requestCurrentUrl)
+        .then(function (response) {
+            console.log(response)
+            return response.json();
+        })
+        .then(function(data) {
+        console.log(data);
+        })
+        // currentTemp.textContent = data.main[3];
 }
 
 searchBtn.addEventListener("click", submitUserEntry);
