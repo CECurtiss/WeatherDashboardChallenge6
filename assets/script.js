@@ -43,7 +43,6 @@ function getForecast (lat, lon) {
 })      .then(function(data){
         console.log(data);
         var weatherDays = []
-        weatherDays.push(data.list[0])
         weatherDays.push(data.list[7])
         weatherDays.push(data.list[15])
         weatherDays.push(data.list[23])
