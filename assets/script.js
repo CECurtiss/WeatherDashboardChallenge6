@@ -68,7 +68,7 @@ function getWeather (lat, lon) {
         .then(function(data) {
         console.log(data);
         })
-        // currentTemp.textContent = data.main[3];
+        currentTemp.textContent = data.main.temp;
 }
 
 searchBtn.addEventListener("click", submitUserEntry);
