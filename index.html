@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="assets\stlye.css">
     <title>Weather Dashboard</title>
 </head>
@@ -14,10 +15,10 @@
     </header>
 
     <div class="row">
-        <div class="col-3  border-bottom">
+        <div class="col-3 border-bottom">
             <form>
                 <label for="cityname">Find a City:</label><br>
-                <input type="text" id="userinput">
+                <input class="d-flex" type="text" id="userinput">
             </form>
             <button type="button" class="btn btn-primary btn-block" id="searchbtn">Search</button>
             
@@ -25,6 +26,7 @@
 
         <div class="col-9 pt-3 pb-3 border border-secondary">
             <h2 id="currentcityanddate">City name</h2>
+            <span img src= 'id="currentweathericon"'></span>
             <div>Temp: <span id="currenttemp"></span></div>
             <div>Wind Speed: <span id="currentwind"></span></div>
             <div>Humidity: <span id="currenthumidity"></span></div>

@@ -5,6 +5,7 @@ var currentCityDate = document.querySelector('#currentcityanddate');
 var currentTemp = document.querySelector('#currenttemp');
 var currentWind = document.querySelector('#currentwind');
 var currentHumidity = document.querySelector('#currenthumidity');
+var currentWeatherIcon = document.querySelector('#currentweathericon');
 
 var submitUserEntry = function () {
     userInput = document.querySelector('#userinput').value;
@@ -54,13 +55,16 @@ function getForecast (lat, lon) {
         
         function weatherCards () {
              for (i=0; i<weatherDays.length; i++){
-                              
+                          
+                var weatherIcon="http://openweathermap.org/img/wn/" + weatherDays[i].weather[0].icon + ".png";
+
                 var displayCard=`
-                <div class="p-2 m-2 bg-primary rounded" id="day-${i}">
-                    <h5 class=city-date-icon">${new Date (weatherDays[i].dt_txt).toLocaleDateString("en-US")}</h2>
-                    <div class="temp">temp: ${Math.floor(weatherDays[i].main.temp_max)} F</div>
-                    <div class="humidity">humidity: ${weatherDays[i].main.humidity} %</div>
-                    <div class="wind"> wind: ${weatherDays[i].wind.speed} MPH</div>
+                <div class="p-2 m-2 bg-primary text-white rounded" id="day-${i}">
+                    <h5 class="city-date">${new Date (weatherDays[i].dt_txt).toLocaleDateString("en-US")}</h2>
+                    <img src= "${weatherIcon}"</img>
+                    <div class="temp">Temp: ${Math.floor(weatherDays[i].main.temp_max)} F</div>
+                    <div class="humidity">Humidity: ${weatherDays[i].main.humidity} %</div>
+                    <div class="wind"> Wind: ${weatherDays[i].wind.speed} MPH</div>
                 </div>`;
                 fiveDayForecast.innerHTML += displayCard;
             }
@@ -82,6 +86,7 @@ function getWeather (lat, lon) {
         currentTemp.textContent = data.main.temp + " F";
         currentWind.textContent=  data.wind.speed + " mph";
         currentHumidity.textContent =  data.main.humidity + "%";
+        currentWeatherIcon.textContent= "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
     })
 }
 
