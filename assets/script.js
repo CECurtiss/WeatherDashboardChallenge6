@@ -1,5 +1,5 @@
 var searchBtn = document.querySelector('#searchbtn');
-var fiveDayForecast = document.querySelector('.fiveday');
+var fiveDayForecast = document.querySelector('#fiveday');
 var searchHist = document.querySelector('.searchhistory');
 var currentCityDate = document.querySelector('#currentcityanddate');
 var currentTemp = document.querySelector('#currenttemp');
@@ -43,20 +43,27 @@ function getForecast (lat, lon) {
 })      .then(function(data){
         console.log(data);
         var weatherDays = []
-        weatherDays.push(data.list[7])
-        weatherDays.push(data.list[15])
-        weatherDays.push(data.list[23])
-        weatherDays.push(data.list[31])
-        weatherDays.push(data.list[39])
+        weatherDays.push(data.list[3])
+        weatherDays.push(data.list[11])
+        weatherDays.push(data.list[19])
+        weatherDays.push(data.list[27])
+        weatherDays.push(data.list[35])
         console.log(weatherDays)
 
-        weatherDays.forEach(weatherCards);
-         
-         function weatherCards () {
-            var dayCard = document.createElement('div')
-            dayCard.addClass("col bg-primary text-white");
-
-            dayCard.append(fiveDayForecast);
+        weatherCards(weatherDays);
+        
+        function weatherCards () {
+             for (i=0; i<weatherDays.length; i++){
+                              
+                var displayCard=`
+                <div class="p-2 m-2 bg-primary rounded" id="day-${i}">
+                    <h5 class=city-date-icon">${new Date (weatherDays[i].dt_txt).toLocaleDateString("en-US")}</h2>
+                    <div class="temp">temp: ${Math.floor(weatherDays[i].main.temp_max)} F</div>
+                    <div class="humidity">humidity: ${weatherDays[i].main.humidity} %</div>
+                    <div class="wind"> wind: ${weatherDays[i].wind.speed} MPH</div>
+                </div>`;
+                fiveDayForecast.innerHTML += displayCard;
+            }
          }
         }
     );
