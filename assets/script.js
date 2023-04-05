@@ -6,8 +6,10 @@ var currentTemp = document.querySelector('#currenttemp');
 var currentWind = document.querySelector('#currentwind');
 var currentHumidity = document.querySelector('#currenthumidity');
 var currentWeatherIcon = document.querySelector('#currentweathericon');
+var form = document.querySelector('#searchform');
 var cities = [];
 
+localStorage.clear();
 function renderCities() {
     searchHist.innerHTML = "";
     for (var i = 0; i < cities.length; i++) {
@@ -141,6 +143,11 @@ function getWeather (lat, lon) {
 }
 
 searchBtn.addEventListener("click", submitUserEntry)
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    submitUserEntry();
+})
 
 init();
 
