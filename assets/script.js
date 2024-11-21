@@ -64,7 +64,8 @@ var submitUserEntry = function () {
     document.querySelector('#fiveday').innerHTML = "";
     var userInput = document.querySelector('#userinput').value;
     userInput = capitalizeFirstLetter(userInput);
-    var geocodeTranslator = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&appid=1878dc2f6221aa2b08efb2c0a1e2da79";
+    var userStateInput = document.querySelector('#statename').value;
+    var geocodeTranslator = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "," + userStateInput + "&appid=1878dc2f6221aa2b08efb2c0a1e2da79";
 
     fetch(geocodeTranslator)
         .then(function (response) {
