@@ -147,7 +147,7 @@ function getWeather (lat, lon) {
         currentTemp.textContent = data.main.temp + " F";
         currentWind.textContent=  data.wind.speed + " mph";
         currentHumidity.textContent =  data.main.humidity + "%";
-        currentWeatherIcon.textContent= "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
+        currentWeatherIcon.src= "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png";
     })
 }
 
