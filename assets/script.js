@@ -10,6 +10,11 @@ var form = document.querySelector('#searchform');
 var cities = [];
 
 localStorage.clear();
+
+function capitalizeFirstLetter(string) {
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 function renderCities() {
     searchHist.innerHTML = "";
     for (var i = 0; i < cities.length; i++) {
@@ -58,6 +63,7 @@ function init() {
 var submitUserEntry = function () {
     document.querySelector('#fiveday').innerHTML = "";
     var userInput = document.querySelector('#userinput').value;
+    userInput = capitalizeFirstLetter(userInput);
     var geocodeTranslator = "http://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&appid=1878dc2f6221aa2b08efb2c0a1e2da79";
 
     fetch(geocodeTranslator)
@@ -75,14 +81,16 @@ var submitUserEntry = function () {
         console.log(lat,lon)
         getForecast(lat,lon);
         getWeather(lat,lon);
-        }) 
-        .catch(function() {
-            alert("Unable to connect to Server");
-        });
         document.getElementById('currentcityanddate').innerHTML = userInput;
+        document.querySelector('#userinput').value = "";
         cities.push(userInput);
         localStorage.setItem("cities", JSON.stringify(cities));
         renderCities();
+    }) 
+    .catch(function() {
+        alert("Unable to locate city")
+        document.querySelector('#userinput').value = "";
+    });
 }
 
 
